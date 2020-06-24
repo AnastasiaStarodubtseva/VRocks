@@ -41,8 +41,9 @@ function Article(props) {
 }
 
 function App() {
-  const [articles, setArticles] = React.useState([]);
-  const [authors, setAuthors] = React.useState([]);
+  const [articles, setArticles] = useState([]);
+  const [authors, setAuthors] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -54,15 +55,30 @@ function App() {
       .then(json => setAuthors(json));
   }, []);
 
+  function handleChange(event) {
+    setQuery(event.target.value);
+  }
+
+  function filterArticles(article) {
+    return query
+      ? article.author.toUpperCase().includes(query.toUpperCase())
+      : true;
+  }
+
   return (
     <div className="container">
       <div className="search">
         <i className="fas fa-search"></i>
-        <input type="search" id="filter" name="filter" placeholder="Filter by author..." />
+        <input
+          type="search"
+          id="filter"
+          name="filter"
+          placeholder="Filter by author..."
+          onChange={handleChange} />
       </div>
 
       <div className="articles">
-        {take(100, articlesWithAuthors(articles, authors)).map((article, i) => {
+        {take(100, articlesWithAuthors(articles, authors).filter(filterArticles)).map((article, i) => {
           return <Article key={'article-' + article.id} article={article} />
         })}
       </div>
