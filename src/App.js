@@ -32,7 +32,7 @@ function articlesWithAuthors(articles, authors) {
 
 function Article(props) {
   return (
-    <div className='article four columns'>
+    <div className='article'>
       <p className='title'>{capitalize(props.article.title)}</p>
       <p className='content'>{capitalize(props.article.content)}</p>
       <p className='author'>{props.article.author}</p>
@@ -55,15 +55,17 @@ function App() {
   }, []);
 
   return (
-    <div className='container'>
-      <i className="fas fa-search"></i>
-      <div className='input'>
-        <input type='search' id='filter' name='filter' placeholder='Filter by author...'/>
+    <div className="container">
+      <div className="search">
+        <i className="fas fa-search"></i>
+        <input type="search" id="filter" name="filter" placeholder="Filter by author..." />
       </div>
 
-      {take(100, articlesWithAuthors(articles, authors)).map((article, i) => {
-        return <Article key={'article-' + article.id} article={article} />
-      })}
+      <div className="articles">
+        {take(100, articlesWithAuthors(articles, authors)).map((article, i) => {
+          return <Article key={'article-' + article.id} article={article} />
+        })}
+      </div>
     </div>
   )
 }

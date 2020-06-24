@@ -4,44 +4,67 @@ $blue: #0b63dc;
 $grey: #383b3f;
 $light-grey: #aeb3b8;
 
-
 body {
   background-color: $light-blue;
 }
-.fa-search.fa-w-16 {
-  position: absolute;
-  margin-left: 36%;
-  color: #979ea3;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border: 1px solid #dbe2ed;
-  background-color: #fff;
-  padding: 11px 10px 10px 12px;
-  @media(max-width: 885px) {
-    margin-left: 31%;
+div.container {
+  padding-top: 20px;
+}
+.search {
+  padding-left: 40px;
+  position: relative;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  @media screen and (min-width: 850px) {
+    max-width: 350px;
   }
-  @media(max-width: 690px) {
-    margin-left: 0;
+
+  .fa-search.fa-w-16 {
+    color: #979ea3;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid #dbe2ed;
+    background-color: #fff;
+    padding: 11px 11px 10px 13px;
+    position: absolute;
+    margin-left: -38px;
+  }
+  input#filter {
+    border: 1px solid #dbe2ed;
+    border-radius: 3px;
+    color: #979ea3;
+    outline: 0;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    @media screen and (max-width: 850px) {
+
+    }
   }
 }
 
-input#filter {
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  border: 1px solid #dbe2ed;
-  border-radius: 3px;
-  color: #979ea3;
-  outline: 0;
-  padding: 0 17px;
-  font-family: 'Open Sans', sans-serif;
-}
 
-.article-row {
+.articles {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 -10px;
+  .article {
+    flex: 25%;
+    padding: 20px;
+    margin: 10px;
+    &:last-child {
+      flex: 25%;
+    }
+    @media screen and (max-width: 992px) {
+      .column {
+        flex: 50%;
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .articles {
+      flex-direction: column;
+    }
+  }
 }
 
 .article {
@@ -49,11 +72,23 @@ input#filter {
   border: 1px solid #dbe2ed;
   border-radius: 4px;
   background-color: #fff;
-  margin-bottom: 20px;
-  padding: 10px;
-  flex: 1;
+  margin-bottom: 35px;
+  flex: 25%;
   padding: 20px;
-  max-width: 33.333333%;
+  @media screen and (max-width: 600px) {
+    .column {
+      flex: 50%;
+      justify-content: space-around;
+      margin-left: 4%;
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .row {
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
   .title {
     color: $blue;
     font-size: 14px;
